@@ -19,7 +19,7 @@ def link_has_more_than_1000_words(source_link):
     text = soup.get_text()
     words = text.split()
     print(len(words))
-    return len(words) >= 100
+    return len(words) >= 1000
 
 
 def take_links_from_page(page):
@@ -71,7 +71,7 @@ outFi = open('index.txt', "w")
 base_url = 'https://kpfu.ru'
 links = take_links_from_page(base_url)
 index = 0
-while len(links) < 10:
+while len(links) < 100:
     links = links + take_links_from_page(links[index])
     links = list(set(links))
     index += 1
