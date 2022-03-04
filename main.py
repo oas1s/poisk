@@ -7,8 +7,20 @@ import uuid
 from bs4 import BeautifulSoup
 
 
+def remove_punc(string):
+    punc = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+    for ele in string:
+        if ele in punc:
+            string = string.replace(ele, "")
+    return string
+
+
 def link_has_more_than_1000_words(source_link):
-    html = requests.get(source_link)
+    try:
+        html = requests.get(source_link)
+    except Exception:
+        print('cant ger page')
+        return False
     soup = BeautifulSoup(html.text, features="html.parser")
 
     # kill all script and style elements
@@ -19,14 +31,13 @@ def link_has_more_than_1000_words(source_link):
     text = soup.get_text()
     words = text.split()
     print(len(words))
-    return len(words) >= 400
+    return len(words) >= 100
 
 
 def take_links_from_page(page):
-    req = Request(page)
-    html_page = urlopen(req)
+    html = requests.get(page)
 
-    soup = BeautifulSoup(html_page, "lxml")
+    soup = BeautifulSoup(html.text, "lxml")
     links = []
     for link in soup.findAll('a'):
         links.append(link.get('href'))
@@ -59,6 +70,8 @@ def take_html_pure_text_from_page(page, logfile):
     chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
     # drop blank lines
     text = '\n'.join(chunk for chunk in chunks if chunk)
+    text = remove_punc(text)
+    text = text.replace("&nbsp", " ")
 
     uuidd = str(uuid.uuid4())
     outF = open('pages/' + uuidd + '.txt', "w", encoding="utf-8")
@@ -71,7 +84,7 @@ outFi = open('index.txt', "w")
 base_url = 'https://kpfu.ru'
 links = take_links_from_page(base_url)
 index = 0
-while len(links) < 100:
+while len(links) < 10:
     links = links + take_links_from_page(links[index])
     links = list(set(links))
     index += 1
