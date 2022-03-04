@@ -19,7 +19,7 @@ def link_has_more_than_1000_words(source_link):
     text = soup.get_text()
     words = text.split()
     print(len(words))
-    return len(words) >= 1000
+    return len(words) >= 400
 
 
 def take_links_from_page(page):
