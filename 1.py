@@ -1,9 +1,8 @@
+import uuid
 from functools import partial
 from operator import is_not
-from urllib.request import Request, urlopen
-import requests
-import uuid
 
+import requests
 from bs4 import BeautifulSoup
 
 
