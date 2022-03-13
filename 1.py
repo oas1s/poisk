@@ -5,6 +5,8 @@ from operator import is_not
 import requests
 from bs4 import BeautifulSoup
 
+count = 0
+
 
 def remove_punc(string):
     punc = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
@@ -52,6 +54,7 @@ def take_links_from_page(page):
 
 
 def take_html_pure_text_from_page(page, logfile):
+    global count
     html = requests.get(page)
     # html.encoding = 'utf-8'
     soup = BeautifulSoup(html.text, features="html.parser")
@@ -72,11 +75,11 @@ def take_html_pure_text_from_page(page, logfile):
     text = remove_punc(text)
     text = text.replace("&nbsp", " ")
 
-    uuidd = str(uuid.uuid4())
-    outF = open('pages/' + uuidd + '.txt', "w", encoding="utf-8")
+    outF = open('pages/' + str(count) + '.txt', "w", encoding="utf-8")
     outF.write(text)
-    logfile.write(page + ' ' + uuidd + '\n')
+    logfile.write(page + ' ' + str(count) + '\n')
     outF.close()
+    count += 1
 
 
 outFi = open('index.txt', "w")
