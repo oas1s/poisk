@@ -1,4 +1,3 @@
-import uuid
 from functools import partial
 from operator import is_not
 
