@@ -72,7 +72,7 @@ def take_html_pure_text_from_page(page, logfile):
     # drop blank lines
     text = '\n'.join(chunk for chunk in chunks if chunk)
     text = remove_punc(text)
-    text = text.replace("&nbsp", " ")
+    text = text.replace(u'\xa0', ' ')
 
     outF = open('pages/' + str(count) + '.txt', "w", encoding="utf-8")
     outF.write(text)
