@@ -39,14 +39,14 @@ if len(indexes_of_and) == 2:
     word3 = find_word(index,request_words[2])
     intr1 = list_intersection(word1['files'],word2['files'])
     intr2 = list_intersection(intr1,word3['files'])
-    # print(intr2)
+    print(intr2)
 
 if len(indexes_of_or) == 2:
     word1 = find_word(index,request_words[0])
     word2 = find_word(index,request_words[1])
     word3 = find_word(index,request_words[2])
     unionn = list(set(word1['files'] + word2['files'] + word3['files']))
-    # print(unionn)
+    print(unionn)
 
 if indexes_of_and[0] < indexes_of_or[0]:
     word1 = find_word(index, request_words[0])
@@ -54,7 +54,7 @@ if indexes_of_and[0] < indexes_of_or[0]:
     word3 = find_word(index, request_words[2])
     intersection = list_intersection(word1['files'],word2['files'])
     unionnn = list(set(intersection + word3['files']))
-    # print(unionnn)
+    print(unionnn)
 
 if indexes_of_and[0] > indexes_of_or[0]:
     word1 = find_word(index, request_words[0])
