@@ -53,6 +53,7 @@ if len(indexes_of_and) == 2:
     intr1 = list_intersection(word1, word2)
     intr2 = list_intersection(intr1, word3)
     print(intr2)
+    exit()
 
 if len(indexes_of_or) == 2:
     word1 = find_word(index, request_words[0])['files'] if not request_words[0].startswith('!') else remove_list(
@@ -63,6 +64,7 @@ if len(indexes_of_or) == 2:
         all_files, find_word(index, request_words[2][1:])['files'])
     unionn = list(set(word1 + word2 + word3))
     print(unionn)
+    exit()
 
 if indexes_of_and[0] < indexes_of_or[0]:
     word1 = find_word(index, request_words[0])['files'] if not request_words[0].startswith('!') else remove_list(
@@ -74,6 +76,7 @@ if indexes_of_and[0] < indexes_of_or[0]:
     intersection = list_intersection(word1, word2)
     unionnn = list(set(intersection + word3))
     print(unionnn)
+    exit()
 
 if indexes_of_and[0] > indexes_of_or[0]:
     word1 = find_word(index, request_words[0])['files'] if not request_words[0].startswith('!') else remove_list(
@@ -85,3 +88,4 @@ if indexes_of_and[0] > indexes_of_or[0]:
     intersection = list_intersection(word2, word3)
     unionnn = list(set(intersection + word1))
     print(unionnn)
+    exit()
