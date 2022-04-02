@@ -25,7 +25,9 @@ for lemma in lemmas:
     flat_list = list(set(flat_list))
     for foundword in flat_list:
         if (foundword not in wordnamesadded):
-            words.append(Word(foundword))
+            new_word = Word(foundword)
+            new_word.files.append(lemma)
+            words.append(new_word)
             wordnamesadded.append(foundword)
         else:
             for word in words:
