@@ -11,7 +11,7 @@ def remove_punc(string):
     punc = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
     for ele in string:
         if ele in punc:
-            string = string.replace(ele, "")
+            string = string.replace(ele, " ")
     return string
 
 
