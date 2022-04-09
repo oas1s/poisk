@@ -1,6 +1,7 @@
 import os
 import json
 import csv
+import math
 
 
 def find_word_index_by_name(name):
@@ -20,7 +21,7 @@ def count_tf_from_file(filename, word):
 
 def count_idf(word):
     indx = find_word_index_by_name(word)
-    idf = len(documents) / len(indx['files'])
+    idf = math.log(len(documents) / len(indx['files']))
     return idf
 
 
@@ -28,7 +29,7 @@ documents = os.listdir('lemm')
 file = open('index.json', mode="r", encoding='utf-8')
 data = file.read()
 index = json.loads(data)
-index = index[:100]
+# index = index[]
 headers = []
 words = []
 headers.append('documentId')
@@ -60,7 +61,7 @@ f2.close()
 
 f3 = open('tables/tf-idf.csv', 'w', encoding='utf-8')
 writer3 = csv.writer(f3)
-writer3.writerow(words)
+writer3.writerow(headers)
 
 tf = open('tables/tf.csv', 'r', encoding='utf-8')
 heading = next(tf)
